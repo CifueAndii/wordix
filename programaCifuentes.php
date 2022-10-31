@@ -6,7 +6,9 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ... COMPLETAR ... */
+/* Cifuentes Flores Andrés Emanuel. FAI-2258. Tecnicatura en Desarrollo Web. andres.cifuentes@est.fi.uncoma-edu.ar. CifueAndii */
+/*  */
+/*  */
 
 
 
