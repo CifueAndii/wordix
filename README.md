@@ -11,6 +11,8 @@ Facultad de Informática
 
 # Integrantes del Grupo
 
-- **Andrés Emanuel Cifuentes Flores** - Legajo FAI-2258 - mail: andres.cifuentes@est.fi.uncoma-edu.ar - Github: CifueAndii
+- **Andrés Emanuel Cifuentes Flores** - Legajo FAI-2258 - mail: andres.cifuentes@est.fi.uncoma.edu.ar - Github: CifueAndii
 
-- **Candela Mia Acevedo** - Legajo FAI-4444 - mail: candela.acevedo@est.fi.uncoma-edu.ar - Github: acevedocan
+- **Candela Mia Acevedo** - Legajo FAI-4444 - mail: candela.acevedo@est.fi.uncoma.edu.ar - Github: acevedocan
+
+- **Florencia Rocio Virgili** - Legajo FAI-4410 - mail: florencia.virgili@est.uncoma.edu.ar - Github: FlorenciaVirgili
