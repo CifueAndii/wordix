@@ -6,7 +6,7 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* Cifuentes Flores Andrés Emanuel. FAI-2258. Tecnicatura en Desarrollo Web. andres.cifuentes@est.fi.uncoma-edu.ar. CifueAndii */
+/* Apellido, Nombre: Cifuentes Flores Andrés Emanuel. Legajo: FAI-2258. Carrera: Tecnicatura en Desarrollo Web. mail: andres.cifuentes@est.fi.uncoma-edu.ar. Usuario Github: CifueAndii */
 /*  */
 /*  */
 
