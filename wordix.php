@@ -130,7 +130,7 @@ function escribirMensajeBienvenida($usuario)
 
 /**
  * Comprueba si la palabra ingresada esta compuesta por letras del alfabeto
- * @param sting $cadena
+ * @param string $cadena
  * @return boolean 
  */
 function esPalabra($cadena)
@@ -327,6 +327,7 @@ function esIntentoGanado($estructuraPalabraIntento)
 /**
  * Devuelve la cantidad de puntos ganados
  * @param int $nroIntento
+ * @param array $estructuraPalabraIntento
  * @return int 
  */
 function obtenerPuntajeWordix($nroIntento, $estructuraPalabraIntento) 
@@ -340,21 +341,28 @@ function obtenerPuntajeWordix($nroIntento, $estructuraPalabraIntento)
             switch ($letra) {
                 case 'A':
                     $puntajePorLetra++;
+                    break;
                 case 'E':
                     $puntajePorLetra++;
+                    break;
                 case 'I':
                     $puntajePorLetra++;
+                    break;
                 default:
                     $puntajePorLetra = $puntajePorLetra + 2;
+                    break;
             }
         } else {
             switch ($letra) {
                 case 'O':
                     $puntajePorLetra++;
+                    break;
                 case 'U':
                     $puntajePorLetra++;
+                    break;
                 default:
                     $puntajePorLetra = $puntajePorLetra + 3;
+                    break;
             }
         }
     }
