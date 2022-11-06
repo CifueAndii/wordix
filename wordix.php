@@ -325,13 +325,62 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * Devuelve la cantidad de puntos ganados
+ * @param int $nroIntento
+ * @return int 
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($nroIntento, $estructuraPalabraIntento) 
 {
+    $puntajePorLetra = 0;
+    $puntajePorIntento = 0;
+    $puntaje = 0;
+    foreach ($estructuraPalabraIntento as $letraIntento) {
+        $letra = $letraIntento["letra"];
+        if ($letra <= "M") {
+            switch ($letra) {
+                case 'A':
+                    $puntajePorLetra++;
+                case 'E':
+                    $puntajePorLetra++;
+                case 'I':
+                    $puntajePorLetra++;
+                default:
+                    $puntajePorLetra = $puntajePorLetra + 2;
+            }
+        } else {
+            switch ($letra) {
+                case 'O':
+                    $puntajePorLetra++;
+                case 'U':
+                    $puntajePorLetra++;
+                default:
+                    $puntajePorLetra = $puntajePorLetra + 3;
+            }
+        }
+    }
 
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    switch($nroIntento) {
+        case 6:
+            $puntajePorIntento = 1;
+            break;
+        case 5:
+            $puntajePorIntento = 2;
+            break;
+        case 4:
+            $puntajePorIntento = 3;
+            break;
+        case 3:
+            $puntajePorIntento = 4;
+            break;
+        case 2:
+            $puntajePorIntento = 5;
+            break;
+        case 1:
+            $puntajePorIntento = 6;
+            break;
+    }
+    $puntaje = $puntajePorIntento + $puntajePorLetra;
+    return $puntaje;
 }
 
 /**
@@ -366,7 +415,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
+        $puntaje = obtenerPuntajeWordix($nroIntento, $arregloDeIntentosWordix[$indiceIntento]);
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento
