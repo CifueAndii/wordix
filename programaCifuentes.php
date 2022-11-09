@@ -27,7 +27,7 @@ function cargarColeccionPalabras()
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         "PERRO", "GORRA", "AGUAS", "CASCO", "CEBRA",
-        "ARBOL", "HIERO", "MARCO", "LIBRO", "SALTO",
+        "ARBOL", "HIELO", "MARCO", "LIBRO", "SALTO",
     ];
 
     return ($coleccionPalabras);
