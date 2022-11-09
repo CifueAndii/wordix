@@ -8,7 +8,7 @@ include_once("wordix.php");
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* Apellido, Nombre: Cifuentes Flores Andrés Emanuel. Legajo: FAI-2258. Carrera: Tecnicatura en Desarrollo Web. mail: andres.cifuentes@est.fi.uncoma-edu.ar. Usuario Github: CifueAndii */
 /*  */
-/*  */
+/* Apellido, Nombre: Virgili Florencia Rocío. Legajo: FAI-4410. Carrera: Tecnicatura en Desarrollo Web. mail: florencia.virgili@est.fi.uncoma.edu.ar . Usuario Github: FlorenicaVirgili */
 
 
 
@@ -27,7 +27,7 @@ function cargarColeccionPalabras()
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         "PERRO", "GORRA", "AGUAS", "CASCO", "CEBRA",
-        /* ... COMPLETAR ... Agregar 5 palabras más */
+        "ARBOL", "HIERO", "MARCO", "LIBRO", "SALTO",
     ];
 
     return ($coleccionPalabras);
