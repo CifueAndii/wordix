@@ -48,7 +48,7 @@ function cargarPartidas() {
     $coleccionPartidas[2] = ["palabraWordix" => "QUESO", "jugador" => "ana", "intentos" => 6,"puntaje" => 12];
     $coleccionPartidas[3] = ["palabraWordix" => "MELON", "jugador" => "pepe", "intentos" => 2,"puntaje" => 14];
     $coleccionPartidas[4] = ["palabraWordix" => "FUEGO", "jugador" => "majo", "intentos" => 4,"puntaje" => 12];
-    $coleccionPartidas[5] = ["palabraWordix" => "HUEVO", "jugador" => "frodo", "intentos" => 1,"puntaje" => 13];
+    $coleccionPartidas[5] = ["palabraWordix" => "HUEVO", "jugador" => "frodo", "intentos" => 1,"puntaje" => 16];
     $coleccionPartidas[6] = ["palabraWordix" => "CEBRA", "jugador" => "juan", "intentos" => 0,"puntaje" => 0];
     $coleccionPartidas[7] = ["palabraWordix" => "MELON", "jugador" => "rosa", "intentos" => 5,"puntaje" => 11];
     $coleccionPartidas[8] = ["palabraWordix" => "PERRO", "jugador" => "pink2000", "intentos" => 1,"puntaje" => 17];
@@ -98,23 +98,24 @@ leerPalabra5Letras();
 /**
  * Dado un número de partida, muestra sus datos
  * @param array $coleccionDePartidas
- * @return string
 */
 function mostrarDatosPartida($coleccionDePartidas) {
     $n = count($coleccionDePartidas);
     $i = 0;
-    echo "Ingrese el número de partida: ";
+    echo "Ingrese el número de partida, debe ser distinto de 0: ";
     $numeroUsuario = trim(fgets(STDIN));
-    while (!is_numeric($numeroUsuario) || $numeroUsuario == 0 || $numeroUsuario > $n || $numeroUsuario % 2 != 0) {
-        if ($numeroUsuario > $n) {
+    $verifica = true;
+    while($verifica) {
+        if (!is_numeric($numeroUsuario) || (str_contains($numeroUsuario, '.'))) {
+            echo "Debe ingresar un número válido: ";
+            $numeroUsuario = trim(fgets(STDIN));
+        } elseif ($numeroUsuario > $n || $numeroUsuario == 0) {
             echo "El número de partida que busca no existe, ingrese otro: ";
             $numeroUsuario = trim(fgets(STDIN));
         } else {
-            echo "Debe ingresar un número de partida válido: ";
-            $numeroUsuario = trim(fgets(STDIN));
+            $verifica = false;
         }
     }
-
     $numeroEncontrado = 0;
     $numeroUsuario--;
     while ($i < $n && $numeroEncontrado == 0) {
@@ -193,12 +194,30 @@ function solicitarJugador(){
    }
    
 //PUNTO 11
+/*La función predefinida uasort ordena un array con una función creada por el usuario,
+manteniendo la asociación de indices. Toma como parametros el array a ordenar y 
+la función del usuario, siendo esta una función de retrollamada o callback.
+Retorna true en caso de éxito o false si ocurre un error. */
+/* La función predefinida print_r imprime información en un formato más legible
+y ordenado. Toma como parametros la expresión a imprimir y un valor booleano
+opcional que al establecer como true hace que print_r devuelva la información en vez
+de imprimirla. En el caso de los arrays, el formato impreso muestra 
+las claves y los elementos.*/
 
 /**
- * Muestra coleccion de partidas ordenada por palabra y jugador
+ * Muestra coleccion de partidas ordenada por jugador y después palabra
  * @param array $coleccionDePartidas
- */
-function ordenarPalabraJugador($coleccionDePartidas) {
+*/
+function ordenarJugadorPalabra($coleccionDePartidas) {
+    $n = count($coleccionDePartidas);
+    $nuevoOrden = ['jugador', 'palabraWordix', 'intentos', 'puntaje'];
+    $resultado = [];
+    for($i = 0; $i < $n; $i++) {
+        foreach ($nuevoOrden as $clave) {
+            $resultado[$clave] = $coleccionDePartidas[$i][$clave];
+        }
+        $coleccionDePartidas[$i] = $resultado;
+    }
     function cmp($a, $b) {
         if ($a == $b) {
             return 0;
