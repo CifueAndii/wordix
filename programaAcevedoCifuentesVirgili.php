@@ -16,6 +16,8 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+//PUNTO 1
+
 /**
  * Obtiene una colección de palabras
  * @return array
@@ -32,6 +34,8 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
+
+//PUNTO 2
 
 /**
  * Carga coleccion de 10 partidas de Wordix
@@ -51,6 +55,45 @@ function cargarPartidas() {
     $coleccionPartidas[9] = ["palabraWordix" => "VERDE", "jugador" => "majo", "intentos" => 3,"puntaje" => 14];
     return $coleccionPartidas;
 }
+
+//PUNTO 3
+
+/**
+ * Muestra un menu de opciones para jugar al wordix, y retorna el numero de la opcion elegida
+ * @return int
+ *    */
+function seleccionarOpcion(){
+    /* int $opcion*/
+    
+    echo "Seleccione una opcion del menu: \n";
+    echo " ____________________________________________________________________________\n";
+    echo "|                              Menu de Opciones:                             |\n";
+    echo "|                 1) Jugar al Wordix con una palabra elegida                 |\n";
+    echo "|                2) Jugar al Wordix con una palabra aleatoria                |\n";
+    echo "|                           3) Mostrar una partida                           |\n";
+    echo "|                    4) Mostrar la primer partida ganadora                   |\n";
+    echo "|                       5) Mostrar resumen del Jugador                       |\n";
+    echo "|     6) Mostrar listado de partidas ordenadas por jugador y por palabra     |\n";
+    echo "|                 7) Agregar una palabra de 5 letras a Wordix                |\n";
+    echo "|                                  8) Salir                                  |\n";
+    echo "|____________________________________________________________________________|\n";
+                   
+    echo "Opcion (1 al 8): ";
+
+    $opcion = solicitarNumeroEntre(1,8);
+ 
+    return $opcion;
+}
+
+//PUNTO 4
+
+leerPalabra5Letras();
+
+//PUNTO 5
+
+//Ya está en el PUNTO 3
+
+//PUNTO 6
 
 /**
  * Dado un número de partida, muestra sus datos
@@ -92,6 +135,64 @@ function mostrarDatosPartida($coleccionDePartidas) {
         $i++;
     }
 }
+
+//PUNTO 7
+
+//PUNTO 8
+
+/**
+* obtiene el indice  de la primera partida ganada por un jugador que elige el usuario
+* @param array $arregloPartidas
+* @param string $nombre
+* @return int
+*/
+function primeraPartidaGanada($arregloPartidas,$nombre){
+    /* int $i, $n, $indice
+       boolean $encontrado */
+    $i = 0;
+    $n = count($arregloPartidas);
+    $encontrado = false;
+    $indice = -1;
+   
+   while($i<$n && !$encontrado){
+        if(($arregloPartidas[$i]["jugador"] == $nombre)&&($arregloPartidas[$i]["puntaje"]>0)){
+            $indice = $i;
+            $encontrado = true;
+        }else{
+            $i++;
+        }
+   }
+    return $indice;
+   }
+
+//PUNTO 9
+
+//PUNTO 10
+
+/**
+* devuelve el nombre de un jugador en minuscula
+* @return string
+*/
+function solicitarJugador(){
+    /* string $jugador
+       boolean $nombreValido */
+       
+    $nombreValido = false;
+   
+    while(!$nombreValido){
+        echo "Ingrese el nombre de un jugador (Tiene que comenzar con una letra): ";
+        $jugador = trim(fgets(STDIN));
+   
+        if(ctype_alpha($jugador[0])){
+            $jugador = strtolower($jugador);
+            $nombreValido = true;
+        }
+    }
+    return $jugador;
+       
+   }
+   
+//PUNTO 11
 
 /**
  * Muestra coleccion de partidas ordenada por palabra y jugador
