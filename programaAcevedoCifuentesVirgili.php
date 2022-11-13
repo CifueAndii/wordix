@@ -102,20 +102,7 @@ leerPalabra5Letras();
 function mostrarDatosPartida($coleccionDePartidas) {
     $n = count($coleccionDePartidas);
     $i = 0;
-    echo "Ingrese el número de partida, debe ser distinto de 0: ";
-    $numeroUsuario = trim(fgets(STDIN));
-    $verifica = true;
-    while($verifica) {
-        if (!is_numeric($numeroUsuario) || (str_contains($numeroUsuario, '.'))) {
-            echo "Debe ingresar un número válido: ";
-            $numeroUsuario = trim(fgets(STDIN));
-        } elseif ($numeroUsuario > $n || $numeroUsuario == 0) {
-            echo "El número de partida que busca no existe, ingrese otro: ";
-            $numeroUsuario = trim(fgets(STDIN));
-        } else {
-            $verifica = false;
-        }
-    }
+    $numeroUsuario = solicitarNumeroEntre(1, $n);
     $numeroEncontrado = 0;
     $numeroUsuario--;
     while ($i < $n && $numeroEncontrado == 0) {
