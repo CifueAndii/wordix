@@ -63,7 +63,7 @@ function cargarPartidas() {
  * @return int
  *    */
 function seleccionarOpcion(){
-    /* int $opcion*/
+    /* int $opc*/
     
     echo "Seleccione una opcion del menu: \n";
     echo " ____________________________________________________________________________\n";
@@ -80,14 +80,13 @@ function seleccionarOpcion(){
                    
     echo "Opcion (1 al 8): ";
 
-    $opcion = solicitarNumeroEntre(1,8);
+    $opc = solicitarNumeroEntre(1,8);
  
-    return $opcion;
+    return $opc;
 }
 
 //PUNTO 4
-
-leerPalabra5Letras();
+//Ya se encuentra el el wordix.php
 
 //PUNTO 5
 
@@ -288,6 +287,28 @@ function ordenarJugadorPalabra($coleccionDePartidas) {
 
 }
 
+//Modulos extras del programa principal
+/**
+ * Indica si una palabra fue o no jugada por un jugador
+ * @param array $arregloDePalabras
+ * @param array $arregloDePartidas
+ * @param int $numero
+ * @param string $nombre
+ */
+function esPalabraJugada($arregloDePalabras,$arregloDePartidas,$numero,$nombre){
+    /* int $n, $i */
+    $n = count($arregloDePartidas);
+    for($i=0;$i<$n;$i++){
+        if(($nombre==$arregloDePartidas[$i]["jugador"])&&($arregloDePartidas[$i]["palabraWordix"]==$arregloDePalabras[$numero])){
+            echo "La palabra Nº " . $numero . " ya la utilizaste " . $nombre . "!!!\n";
+            echo "Ingrese un nuevo numero de palabra para jugar: ";
+            $numero = trim(fgets(STDIN));
+            $i = -1;
+        }
+    }
+    echo "La palabra Nº " . $numero . " esta disponible para jugar\n";   
+}
+
 /* ... COMPLETAR ... */
 
 
@@ -297,10 +318,15 @@ function ordenarJugadorPalabra($coleccionDePartidas) {
 /**************************************/
 
 //Declaración de variables:
-
+/* int $opcion, $numPalabra, $n
+   array $arregloPalabras, $arregloPartidas
+   string $nombreJugador, $palabraNueva */
+       
 
 //Inicialización de variables:
-
+ $arregloPartidas = cargarPartidas();
+ $arregloPalabras = cargarColeccionPalabras();
+ $n = count($arregloPartidas);
 
 //Proceso:
 
@@ -310,26 +336,79 @@ $partida = jugarWordix("MELON", strtolower("MaJo"));
 
 
 
-/*
-do {
-    $opcion = ...;
 
+do {
+    $opcion = seleccionarOpcion();
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-
+            $n = count($arregloPartidas);
+            $nombreJugador = solicitarJugador();
+            echo "Ingrese un numero de palabra para jugar: ";
+            $numPalabra = solicitarNumeroEntre(1,count($arregloPalabras));
+            $aux = $numPalabra;
+            $numPalabra--;
+            while($i<$n){
+                if(($nombreJugador==$arregloPartidas[$i]["jugador"])&&($arregloPartidas[$i]["palabraWordix"]==$arregloPalabras[$numPalabra])){
+                    echo "La palabra " . $aux . " ya la jugaste " . $nombreJugador . "!!!\n";
+                    echo "Ingrese otro numero de palabra para jugar: ";
+                    $numPalabra = trim(fgets(STDIN));
+                    $aux = $numPalabra;
+                    $numPalabra--;
+                    $i = 0;
+                }else{
+                    $i++;
+                }
+            }
+            echo "La palabra " . $aux . " esta disponible para jugar\n";
+            $nuevaPartida = jugarWordix($arregloPalabras[$numPalabra],$nombreJugador);
+            $arregloPartidas = agregarPartida($nuevaPartida,$arregloPartidas);
+            print_r($arregloPartidas);
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
+            $n = count($arregloPartidas);
+            $nombreJugador = solicitarJugador();
+            $numPalabra = array_rand($arregloPalabras);
+            if($numPalabra != 0){
+                $numPalabra--;
+            }
+            
+            while($i<$n){
+                if(($nombreJugador==$arregloPartidas[$i]["jugador"])&&($arregloPartidas[$i]["palabraWordix"]==$arregloPalabras[$numPalabra])){
+                    echo "La palabra aleatoria ya la jugaste " . $nombreJugador . "!!!\n";
+                    echo "Te damos otra palabra \n ";
+                    $numPalabra = array_rand($arregloPalabras);
+                    $numPalabra--;
+                    $i = 0;
+                }else{
+                    $i++;
+                }
+            }
+            echo "La palabra aleatoria esta disponible para jugar\n";
+            $nuevaPartida = jugarWordix($arregloPalabras[$numPalabra],$nombreJugador);
+            $arregloPartidas = agregarPartida($nuevaPartida,$arregloPartidas);
+            print_r($arregloPartidas);
             break;
         case 3: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
-        
-            //...
+        case 4: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+    
+            break;
+        case 5: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+    
+            break;
+        case 6: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+    
+            break;
+        case 7: 
+            $palabraNueva = leerPalabra5Letras();
+            $arregloPalabras = agregarPalabra($palabraNueva,$arregloPalabras);
+            print_r($arregloPalabras);
+            break;
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);

@@ -37,7 +37,7 @@ function solicitarNumeroEntre($min, $max)
     //int $numero
     $numero = trim(fgets(STDIN));
     while (!is_numeric($numero) || !($numero >= $min && $numero <= $max) || (strpos($numero, "."))) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+        echo "Debe ingresar un numero entre " . $min . " y " . $max . ": ";
         $numero = trim(fgets(STDIN));
     }
     return $numero;
@@ -158,7 +158,7 @@ function leerPalabra5Letras()
     $palabra  = strtoupper($palabra);
 
     while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
-        echo "Debe ingresar una palabra de 5 letras:";
+        echo "Debe ingresar una palabra de 5 letras: ";
         $palabra = strtoupper(trim(fgets(STDIN)));
     }
     return $palabra;
@@ -425,11 +425,11 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     if ($ganoElIntento) {
         $nroIntento--;
         $puntaje = obtenerPuntajeWordix($nroIntento, $arregloDeIntentosWordix[$indiceIntento]);
-        echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
+        echo "Adivino la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento
         $puntaje = 0;
-        echo "Seguí Jugando Wordix, la próxima será! ";
+        echo "Segui Jugando Wordix, la proxima sera! ";
     }
 
     $partida = [
