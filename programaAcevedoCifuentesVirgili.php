@@ -398,7 +398,24 @@ do {
     
             break;
         case 5: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            $nombreJugador = solicitarJugador();
+            $coleccionPartidas = cargarPartidas();
+            $mostrarResumen = resumenJugador($coleccionPartidas , $nombreJugador);
+            $porcentaje = ($mostrarResumen["victorias"] * 100) / $mostrarResumen["partidas"];
+            echo "*********************************************\n";
+            echo "Jugador: " . $mostrarResumen["jugador"] . "\n";
+            echo "Partidas: " . $mostrarResumen["partidas"] . "\n";
+            echo "Puntaje Total: " . $motrarResumen["puntaje"] . "\n";
+            echo "Victorias: " . $mostrarResumen["victorias"] . "\n";
+            echo "Porcentaje Victorias: " . $porcentaje . "\n"; 
+            echo "Adivinadas: \n";
+            echo "           Intento 1: " . $mostrarResumen["intento1"] . "\n";
+            echo "           Intento 2: " . $mostrarResumen["intento2"] . "\n";
+            echo "           Intento 3: " . $mostrarResumen["intento3"] . "\n";
+            echo "           Intento 4: " . $mostrarResumen["intento4"] . "\n";
+            echo "           Intento 5: " . $mostrarResumen["intento5"] . "\n";
+            echo "           Intento 6: " . $mostrarResumen["intento6"] . "\n";
+            echo "*********************************************\n";
     
             break;
         case 6: 
