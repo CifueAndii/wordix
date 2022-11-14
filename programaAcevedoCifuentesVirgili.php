@@ -126,6 +126,21 @@ function mostrarDatosPartida($coleccionDePartidas) {
 
 //PUNTO 7
 
+/**
+ * Agrega una palabra a la coleccionPalabra
+ * @param string $nuevaPalabra
+ * @param array $colecionPalabras
+ * @return array
+ */
+
+function agregarPalabra ($nuevaPalabra , $coleccionPalabras){
+    $n = count($coleccionPalabras);
+    $coleccionPalabras[$n]= $nuevaPalabra;
+    return ($coleccionPalabras);
+    
+  
+}
+
 //PUNTO 8
 
 /**
@@ -154,6 +169,62 @@ function primeraPartidaGanada($arregloPartidas,$nombre){
    }
 
 //PUNTO 9
+
+/**
+ * Retorna el resumen de un jugador
+ * @param array $coleccionPartidas
+ * @param string $nombreJugador
+ * @return array
+ */
+function resumenJugador ($coleccionPartidas, $nombreJugador){
+    $cantPartidas = 0;
+    $puntaje = 0;
+    $victorias = 0;
+    $intento1 = 0;
+    $intento2 = 0;
+    $intento3 = 0;
+    $intento4 = 0;
+    $intento5 = 0;
+    $intento6 = 0;
+    $cont = count($coleccionPartidas);
+    $i = 0;
+    while ($i <= $cont){
+        if ($coleccionPartidas[$i]["jugador"] == $nombreJugador){
+            $cantPartidas = $cantPartidas + 1;
+            if ($coleccionPartidas[$i]["puntaje"] > 0){
+                $puntaje = $coleccionPartidas[$i]["puntaje"] + $puntaje;
+                $victorias = $victorias + 1;
+                $intento = $coleccionPartidas[$i]["intentos"];
+                switch ($intento){
+                    case 1:
+                        $intento1 = $intento1 + 1;
+                        break;
+                    case 2:
+                        $intento2 = $intento2 + 1;
+                        break;
+                    case 3:
+                        $intento3 = $intento3 + 1;
+                        break;
+                    case 4:
+                        $intento4 = $intento4 + 1;
+                        break;
+                    case 5:
+                        $intento5 = $intento5 + 1;
+                        break;
+                    case 6:
+                        $intento6 = $intento6 + 1;
+                        break;
+                }
+            }
+            
+        }
+        $i++;
+    }    
+        
+
+    $resumenJugador = ["jugador" => $nombreJugador, "partidas" => $cantPartidas , "puntaje" => $puntaje , "victorias" => $victorias, "intento1" => $intento1 , "intento2" => $intento2 , "intento3" => $intento3 , "intento4" => $intento4 , "intento5" => $intento5 , "intento6" => $intento6];
+    return $resumenJugador;
+}
 
 //PUNTO 10
 
