@@ -133,7 +133,19 @@ function mostrarDatosPartida($coleccionDePartidas) {
  */
 
 function agregarPalabra ($nuevaPalabra , $coleccionPalabras){
+
+    $j = 0;
     $n = count($coleccionPalabras);
+    while ($j < $n){
+        if ($coleccionPalabras[$j] == $nuevaPalabra){
+            echo "Esta palabra ya está en el juego";
+            $nuevaPalabra = trim(fgets(STDIN));
+            $j = -1 ;
+    
+        }
+        $j++ ;
+    }
+   
     $coleccionPalabras[$n]= $nuevaPalabra;
     return ($coleccionPalabras);
     
