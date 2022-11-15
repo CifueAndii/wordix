@@ -203,7 +203,7 @@ function resumenJugador ($coleccionPartidas, $nombreJugador){
         if ($coleccionPartidas[$i]["jugador"] == $nombreJugador){
             $cantPartidas = $cantPartidas + 1;
             if ($coleccionPartidas[$i]["puntaje"] > 0){
-                $puntaje = $coleccionPartidas[$i]["puntaje"] + $puntaje;
+                $puntaje = $puntaje + $coleccionPartidas[$i]["puntaje"];
                 $victorias = $victorias + 1;
                 $intento = $coleccionPartidas[$i]["intentos"];
                 switch ($intento){
@@ -390,11 +390,31 @@ do {
             $arregloPartidas = agregarPartida($nuevaPartida,$arregloPartidas);
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            echo "Ingrese el número de partida: ";
+            $numeroUsuario = solicitarNumeroEntre(1, $n);
+            mostrarDatosPartida($arregloPartidas, $numeroUsuario);
 
             break;
         case 4: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            $nombreJugador = solicitarJugador();
+            $jugadorExiste = false;
+            while ($i < $n && !$jugadorExiste) {
+                if ($arregloPartidas[$i]['jugador'] == $nombreJugador) {
+                    $jugadorExiste = true;
+                }
+                $i++;
+            }
+            if ($jugadorExiste) {
+                $indice = primeraPartidaGanada($arregloPartidas, $nombreJugador);
+                if ($indice != -1) {
+                    $indice = $indice + 1;
+                    mostrarDatosPartida($arregloPartidas, $indice);
+                } else {
+                    echo "El jugador " . $nombreJugador . " no ganó ninguna partida.\n";
+                }
+            } else {
+                echo "No existe el jugador.";
+            }
     
             break;
         case 5: 
@@ -405,7 +425,7 @@ do {
             echo "*********************************************\n";
             echo "Jugador: " . $mostrarResumen["jugador"] . "\n";
             echo "Partidas: " . $mostrarResumen["partidas"] . "\n";
-            echo "Puntaje Total: " . $motrarResumen["puntaje"] . "\n";
+            echo "Puntaje Total: " . $mostrarResumen["puntaje"] . "\n";
             echo "Victorias: " . $mostrarResumen["victorias"] . "\n";
             echo "Porcentaje Victorias: " . $porcentaje . "\n"; 
             echo "Adivinadas: \n";
