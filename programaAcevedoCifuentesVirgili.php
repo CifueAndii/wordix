@@ -97,18 +97,18 @@ function seleccionarOpcion(){
 /**
  * Dado un número de partida, muestra sus datos
  * @param array $coleccionDePartidas
- * @param int $numPartida
 */
-function mostrarDatosPartida($coleccionDePartidas, $numPartida) {
+function mostrarDatosPartida($coleccionDePartidas) {
     $n = count($coleccionDePartidas);
     $i = 0;
-    $numeroEncontrado = false;
-    $numPartida--;
-    while ($i < $n && !$numeroEncontrado) {
-        if ($i == $numPartida) {
-            $numPartida++;
+    $numeroUsuario = solicitarNumeroEntre(1, $n);
+    $numeroEncontrado = 0;
+    $numeroUsuario--;
+    while ($i < $n && $numeroEncontrado == 0) {
+        if ($i == $numeroUsuario) {
+            $numeroUsuario++;
             echo "**********************************\n";
-            echo "Partida WORDIX " . $numPartida . ": palabra " . $coleccionDePartidas[$i]["palabraWordix"] . "\n";
+            echo "Partida WORDIX " . $numeroUsuario . ": palabra " . $coleccionDePartidas[$i]["palabraWordix"] . "\n";
             echo "Jugador: " . $coleccionDePartidas[$i]["jugador"] . "\n";
             echo "Puntaje: " . $coleccionDePartidas[$i]["puntaje"] . "\n";
             if ($coleccionDePartidas[$i]["intentos"] != 0) {
@@ -117,7 +117,7 @@ function mostrarDatosPartida($coleccionDePartidas, $numPartida) {
                 echo "No adivinó la palabra\n";
             }
             echo "**********************************\n";
-            $numeroEncontrado = true;
+            $numeroEncontrado++;
         }
         $i++;
     }
@@ -390,34 +390,16 @@ do {
             $arregloPartidas = agregarPartida($nuevaPartida,$arregloPartidas);
             break;
         case 3: 
-            echo "Ingrese el número de partida: ";
-            $numeroUsuario = solicitarNumeroEntre(1, $n);
-            mostrarDatosPartida($arregloPartidas, $numeroUsuario);
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+
             break;
         case 4: 
-            $nombreJugador = solicitarJugador();
-            $jugadorExiste = false;
-            while ($i < $n && !$jugadorExiste) {
-                if ($arregloPartidas[$i]['jugador'] == $nombreJugador) {
-                    $jugadorExiste = true;
-                }
-                $i++;
-            }
-            if ($jugadorExiste) {
-                $indice = primeraPartidaGanada($arregloPartidas, $nombreJugador);
-                if ($indice != -1) {
-                    $indice = $indice + 1;
-                    mostrarDatosPartida($arregloPartidas, $indice);
-                } else {
-                    echo "El jugador " . $nombreJugador . " no ganó ninguna partida.\n";
-                }
-            } else {
-                echo "No existe el jugador.";
-            }
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+    
             break;
         case 5: 
             $nombreJugador = solicitarJugador();
-            $coleccionPartidas = cargarPartidas();
+            $coleccionPartidas = $arregloPartidas;
             $mostrarResumen = resumenJugador($coleccionPartidas , $nombreJugador);
             $porcentaje = ($mostrarResumen["victorias"] * 100) / $mostrarResumen["partidas"];
             echo "*********************************************\n";
@@ -437,7 +419,8 @@ do {
     
             break;
         case 6: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            
+            echo ordenarJugadorPalabra($arregloPartidas);
     
             break;
         case 7: 
