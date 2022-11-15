@@ -99,6 +99,8 @@ function seleccionarOpcion(){
  * @param array $coleccionDePartidas
 */
 function mostrarDatosPartida($coleccionDePartidas) {
+    // INT $n, $i
+    // BOOL $numeroEncontrado
     $n = count($coleccionDePartidas);
     $i = 0;
     $numeroUsuario = solicitarNumeroEntre(1, $n);
@@ -278,6 +280,8 @@ las claves y los elementos.*/
  * @param array $coleccionDePartidas
 */
 function ordenarJugadorPalabra($coleccionDePartidas) {
+    // INT $n, $i
+    // ARR $nuevoOrden, $resultado
     $n = count($coleccionDePartidas);
     $nuevoOrden = ['jugador', 'palabraWordix', 'intentos', 'puntaje'];
     $resultado = [];
@@ -322,9 +326,10 @@ function agregarPartida ($partidaNueva, $coleccionPartidas){
 /**************************************/
 
 //Declaración de variables:
-/* int $opcion, $numPalabra, $n
+/* int $opcion, $numPalabra, $n, $numeroUsuario, $indice
    array $arregloPalabras, $arregloPartidas
-   string $nombreJugador, $palabraNueva */
+   string $nombreJugador, $palabraNueva 
+   boolean $jugadorExiste*/
        
 
 //Inicialización de variables:
