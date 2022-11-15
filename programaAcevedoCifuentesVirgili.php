@@ -396,22 +396,22 @@ do {
             break;
         case 4: 
             $nombreJugador = solicitarJugador();
-            $nombreEncontrado = false;
-            $partidaEncontrada = false;
-            while ($i < $n && !$partidaEncontrada) {
+            $jugadorExiste = false;
+            while ($i < $n && !$jugadorExiste) {
                 if ($arregloPartidas[$i]['jugador'] == $nombreJugador) {
-                    if ($arregloPartidas[$i]['puntaje'] > 0) {
-                        $auxIndice = $i + 1;
-                        mostrarDatosPartida($arregloPartidas, $auxIndice);
-                        $partidaEncontrada = true;
-                    }
-                    $nombreEncontrado = true;
+                    $jugadorExiste = true;
                 }
                 $i++;
             }
-            if ($nombreEncontrado && !$partidaEncontrada) {
-                echo "El jugador " . $nombreJugador . " no ganó ninguna partida.\n";
-            } elseif (!$nombreEncontrado) {
+            if ($jugadorExiste) {
+                $indice = primeraPartidaGanada($arregloPartidas, $nombreJugador);
+                if ($indice != -1) {
+                    $indice = $indice + 1;
+                    mostrarDatosPartida($arregloPartidas, $indice);
+                } else {
+                    echo "El jugador " . $nombreJugador . " no ganó ninguna partida.\n";
+                }
+            } else {
                 echo "No existe el jugador.";
             }
             break;
