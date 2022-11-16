@@ -22,8 +22,8 @@ include_once("wordix.php");
  * Obtiene una colección de palabras
  * @return array
  */
-function cargarColeccionPalabras()
-{
+function cargarColeccionPalabras(){
+    /* array $coleccionPalabras */
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
@@ -42,6 +42,7 @@ function cargarColeccionPalabras()
  * @return array
  */
 function cargarPartidas() {
+    /* array $coleccionPartidas */
     $coleccionPartidas = [];
     $coleccionPartidas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 0,"puntaje" => 0];
     $coleccionPartidas[1] = ["palabraWordix" => "CASAS", "jugador" => "rudolf", "intentos" => 3,"puntaje" => 14];
@@ -99,8 +100,8 @@ function seleccionarOpcion(){
  * @param int $numPartida
 */
 function mostrarDatosPartida($numPartida, $coleccionPartidas) {
-    // INT $n, $i
-    // BOOL $numeroEncontrado
+    // int $n, $i
+    // boolean $numeroEncontrado
     $n = count($coleccionPartidas);
     $i = 0;
     $numeroEncontrado = false;
@@ -160,16 +161,16 @@ function agregarPalabra ($nuevaPalabra,$coleccionPalabras){
 * @param string $nombre
 * @return int
 */
-function primeraPartidaGanada($arregloPartidas,$nombre){
+function primeraPartidaGanada($coleccionPartidas,$nombre){
     /* int $i, $n, $indice
        boolean $encontrado */
     $i = 0;
-    $n = count($arregloPartidas);
+    $n = count($coleccionPartidas);
     $encontrado = false;
     $indice = -1;
    
    while($i<$n && !$encontrado){
-        if(($arregloPartidas[$i]["jugador"] == $nombre)&&($arregloPartidas[$i]["puntaje"]>0)){
+        if(($coleccionPartidas[$i]["jugador"] == $nombre)&&($coleccionPartidas[$i]["puntaje"]>0)){
             $indice = $i;
             $encontrado = true;
         }else{
@@ -188,6 +189,9 @@ function primeraPartidaGanada($arregloPartidas,$nombre){
  * @return array
  */
 function resumenJugador ($coleccionPartidas, $nombreJugador){
+    /* int $cantPartidas, $puntaje, $victorias, $intento1, $intento2, $intento3, $intento4
+           $intento5, $intento6, $cont, $i 
+       array $resumenJugador */
     $cantPartidas = 0;
     $puntaje = 0;
     $victorias = 0;
@@ -278,8 +282,8 @@ las claves y los elementos.*/
  * @param array $coleccionDePartidas
 */
 function ordenarJugadorPalabra($coleccionDePartidas) {
-        // INT $n, $i
-    // ARR $nuevoOrden, $resultado
+    // int $n, $i
+    // array $nuevoOrden, $resultado
     $n = count($coleccionDePartidas);
     $nuevoOrden = ['jugador', 'palabraWordix', 'intentos', 'puntaje'];
     $resultado = [];
@@ -310,6 +314,7 @@ function ordenarJugadorPalabra($coleccionDePartidas) {
  */
 
 function agregarPartida ($partidaNueva, $coleccionPartidas){
+    /* int $n */
     $n = count($coleccionPartidas);
     $coleccionPartidas[$n]= $partidaNueva;
     return ($coleccionPartidas);
@@ -327,21 +332,16 @@ function agregarPartida ($partidaNueva, $coleccionPartidas){
 /* int $opcion, $numPalabra, $n, $numeroUsuario, $indice
    array $arregloPalabras, $arregloPartidas
    string $nombreJugador, $palabraNueva 
-   boolean $jugadorExiste*/
+   boolean $jugadorExiste */
        
 
 //Inicialización de variables:
  $arregloPartidas = cargarPartidas();
  $arregloPalabras = cargarColeccionPalabras();
  $i = 0;
+
+
 //Proceso:
-
-
-//print_r($partida);
-//imprimirResultado($partida);
-
-
-
 
 do {
     $opcion = seleccionarOpcion();
