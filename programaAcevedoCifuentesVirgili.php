@@ -98,10 +98,9 @@ function seleccionarOpcion(){
  * Dado un número de partida, muestra sus datos
  * @param int $numPartida
 */
-function mostrarDatosPartida($numPartida) {
+function mostrarDatosPartida($numPartida, $coleccionPartidas) {
     // INT $n, $i
     // BOOL $numeroEncontrado
-    $coleccionPartidas = cargarPartidas();
     $n = count($coleccionPartidas);
     $i = 0;
     $numeroEncontrado = false;
@@ -399,7 +398,7 @@ do {
         case 3: 
             echo "Ingrese el número de partida: ";
             $numeroUsuario = solicitarNumeroEntre(1, count($arregloPartidas));
-            mostrarDatosPartida($numeroUsuario);
+            mostrarDatosPartida($numeroUsuario,$arregloPartidas);
             break;
         case 4: 
             $nombreJugador = solicitarJugador();
@@ -415,7 +414,7 @@ do {
                 $indice = primeraPartidaGanada($arregloPartidas, $nombreJugador);
                 if ($indice != -1) {
                     $indice = $indice + 1;
-                    mostrarDatosPartida($indice);
+                    mostrarDatosPartida($indice,$arregloPartidas);
                 } else {
                     echo "El jugador " . $nombreJugador . " no ganó ninguna partida.\n";
                 }
