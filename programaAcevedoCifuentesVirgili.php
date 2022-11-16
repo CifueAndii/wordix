@@ -96,30 +96,30 @@ function seleccionarOpcion(){
 
 /**
  * Dado un número de partida, muestra sus datos
- * @param array $coleccionDePartidas
+ * @param int $numPartida
 */
-function mostrarDatosPartida($coleccionDePartidas) {
+function mostrarDatosPartida($numPartida) {
     // INT $n, $i
     // BOOL $numeroEncontrado
-    $n = count($coleccionDePartidas);
+    $coleccionPartidas = cargarPartidas();
+    $n = count($coleccionPartidas);
     $i = 0;
-    $numeroUsuario = solicitarNumeroEntre(1, $n);
-    $numeroEncontrado = 0;
-    $numeroUsuario--;
-    while ($i < $n && $numeroEncontrado == 0) {
-        if ($i == $numeroUsuario) {
-            $numeroUsuario++;
+    $numeroEncontrado = false;
+    $numPartida--;
+    while ($i < $n && !$numeroEncontrado) {
+        if ($i == $numPartida) {
+            $numPartida++;
             echo "**********************************\n";
-            echo "Partida WORDIX " . $numeroUsuario . ": palabra " . $coleccionDePartidas[$i]["palabraWordix"] . "\n";
-            echo "Jugador: " . $coleccionDePartidas[$i]["jugador"] . "\n";
-            echo "Puntaje: " . $coleccionDePartidas[$i]["puntaje"] . "\n";
-            if ($coleccionDePartidas[$i]["intentos"] != 0) {
-                echo "Adivinó la palabra en " . $coleccionDePartidas[$i]["intentos"] . " intentos\n";
+            echo "Partida WORDIX " . $numPartida . ": palabra " . $coleccionPartidas[$i]["palabraWordix"] . "\n";
+            echo "Jugador: " . $coleccionPartidas[$i]["jugador"] . "\n";
+            echo "Puntaje: " . $coleccionPartidas[$i]["puntaje"] . "\n";
+            if ($coleccionPartidas[$i]["intentos"] != 0) {
+                echo "Adivinó la palabra en " . $coleccionPartidas[$i]["intentos"] . " intentos\n";
             } else {
                 echo "No adivinó la palabra\n";
             }
             echo "**********************************\n";
-            $numeroEncontrado++;
+            $numeroEncontrado = true;
         }
         $i++;
     }
@@ -280,7 +280,7 @@ las claves y los elementos.*/
  * @param array $coleccionDePartidas
 */
 function ordenarJugadorPalabra($coleccionDePartidas) {
-    // INT $n, $i
+        // INT $n, $i
     // ARR $nuevoOrden, $resultado
     $n = count($coleccionDePartidas);
     $nuevoOrden = ['jugador', 'palabraWordix', 'intentos', 'puntaje'];
@@ -397,8 +397,7 @@ do {
         case 3: 
             echo "Ingrese el número de partida: ";
             $numeroUsuario = solicitarNumeroEntre(1, $n);
-            mostrarDatosPartida($arregloPartidas, $numeroUsuario);
-
+            mostrarDatosPartida($numeroUsuario);
             break;
         case 4: 
             $nombreJugador = solicitarJugador();
@@ -413,14 +412,13 @@ do {
                 $indice = primeraPartidaGanada($arregloPartidas, $nombreJugador);
                 if ($indice != -1) {
                     $indice = $indice + 1;
-                    mostrarDatosPartida($arregloPartidas, $indice);
+                    mostrarDatosPartida($indice);
                 } else {
                     echo "El jugador " . $nombreJugador . " no ganó ninguna partida.\n";
                 }
             } else {
                 echo "No existe el jugador.";
             }
-    
             break;
         case 5: 
             $nombreJugador = solicitarJugador();
