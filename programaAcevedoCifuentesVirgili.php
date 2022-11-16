@@ -98,6 +98,7 @@ function seleccionarOpcion(){
 /**
  * Dado un número de partida, muestra sus datos
  * @param int $numPartida
+ * @param array $coleccionPartidas
 */
 function mostrarDatosPartida($numPartida, $coleccionPartidas) {
     // int $n, $i
@@ -157,7 +158,7 @@ function agregarPalabra ($nuevaPalabra,$coleccionPalabras){
 
 /**
 * obtiene el indice  de la primera partida ganada por un jugador que elige el usuario
-* @param array $arregloPartidas
+* @param array $coleccionPartidas
 * @param string $nombre
 * @return int
 */
@@ -320,9 +321,6 @@ function agregarPartida ($partidaNueva, $coleccionPartidas){
     return ($coleccionPartidas);
 }
 
-/* ... COMPLETAR ... */
-
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -330,7 +328,7 @@ function agregarPartida ($partidaNueva, $coleccionPartidas){
 
 //Declaración de variables:
 /* int $opcion, $numPalabra, $n, $numeroUsuario, $indice
-   array $arregloPalabras, $arregloPartidas
+   array $arregloPalabras, $arregloPartidas, $nuevaPartida
    string $nombreJugador, $palabraNueva 
    boolean $jugadorExiste */
        
@@ -359,7 +357,7 @@ do {
                 if(($nombreJugador==$arregloPartidas[$i]["jugador"])&&($arregloPartidas[$i]["palabraWordix"]==$arregloPalabras[$numPalabra])){
                     echo "La palabra " . $aux . " ya la jugaste " . $nombreJugador . "!!!\n";
                     echo "Ingrese otro numero de palabra para jugar: ";
-                    $numPalabra = trim(fgets(STDIN));
+                    $numPalabra = solicitarNumeroEntre(1,count($arregloPalabras));
                     $aux = $numPalabra;
                     $numPalabra--;
                     $i = 0;
@@ -384,7 +382,6 @@ do {
                     echo "La palabra aleatoria ya la jugaste " . $nombreJugador . "!!!\n";
                     echo "Te damos otra palabra \n ";
                     $numPalabra = array_rand($arregloPalabras);
-                    $numPalabra--;
                     $i = 0;
                 }else{
                     $i++;
@@ -418,7 +415,7 @@ do {
                     echo "El jugador " . $nombreJugador . " no ganó ninguna partida.\n";
                 }
             } else {
-                echo "No existe el jugador.";
+                echo "No existe el jugador.\n";
             }
             break;
         case 5: 
@@ -433,7 +430,7 @@ do {
                 $i++;
             }
             if (!$jugadorExiste){
-                echo "No existe este jugador ";
+                echo "No existe este jugador.\n";
             }else{
                 $mostrarResumen = resumenJugador($arregloPartidas , $nombreJugador);
                 $porcentaje = ($mostrarResumen["victorias"] * 100) / $mostrarResumen["partidas"];
