@@ -344,7 +344,7 @@ function agregarPartida ($partidaNueva, $coleccionPartidas){
 do {
     $opcion = seleccionarOpcion();
     
-    switch ($opcion) {
+    switch ($opcion) { // SWITCH Corresponde a una estructura de control alternativa multiple
         case 1: 
             $nombreJugador = solicitarJugador();
             echo "Ingrese un numero de palabra para jugar: ";
