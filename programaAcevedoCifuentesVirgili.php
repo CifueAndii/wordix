@@ -139,7 +139,7 @@ function agregarPalabra ($nuevaPalabra , $coleccionPalabras){
     $n = count($coleccionPalabras);
     while ($j < $n){
         if ($coleccionPalabras[$j] == $nuevaPalabra){
-            echo "Esta palabra ya está en el juego";
+            echo "Esta palabra ya está en el juego. Ingrese otra: ";
             $nuevaPalabra = trim(fgets(STDIN));
             $j = -1 ;
     
@@ -200,7 +200,7 @@ function resumenJugador ($coleccionPartidas, $nombreJugador){
     $intento6 = 0;
     $cont = count($coleccionPartidas);
     $i = 0;
-    while ($i <= $cont){
+    while ($i < $cont){
         if ($coleccionPartidas[$i]["jugador"] == $nombreJugador){
             $cantPartidas = $cantPartidas + 1;
             if ($coleccionPartidas[$i]["puntaje"] > 0){
@@ -424,23 +424,35 @@ do {
             break;
         case 5: 
             $nombreJugador = solicitarJugador();
-            $coleccionPartidas = $arregloPartidas;
-            $mostrarResumen = resumenJugador($coleccionPartidas , $nombreJugador);
-            $porcentaje = ($mostrarResumen["victorias"] * 100) / $mostrarResumen["partidas"];
-            echo "*********************************************\n";
-            echo "Jugador: " . $mostrarResumen["jugador"] . "\n";
-            echo "Partidas: " . $mostrarResumen["partidas"] . "\n";
-            echo "Puntaje Total: " . $mostrarResumen["puntaje"] . "\n";
-            echo "Victorias: " . $mostrarResumen["victorias"] . "\n";
-            echo "Porcentaje Victorias: " . $porcentaje . "\n"; 
-            echo "Adivinadas: \n";
-            echo "           Intento 1: " . $mostrarResumen["intento1"] . "\n";
-            echo "           Intento 2: " . $mostrarResumen["intento2"] . "\n";
-            echo "           Intento 3: " . $mostrarResumen["intento3"] . "\n";
-            echo "           Intento 4: " . $mostrarResumen["intento4"] . "\n";
-            echo "           Intento 5: " . $mostrarResumen["intento5"] . "\n";
-            echo "           Intento 6: " . $mostrarResumen["intento6"] . "\n";
-            echo "*********************************************\n";
+            
+            $jugadorExiste = false;
+            $i = 0;
+            while ($i < count($arregloPartidas) && !$jugadorExiste) {
+                if ($arregloPartidas[$i]["jugador"] == $nombreJugador) {
+                    $jugadorExiste = true;
+                }
+                $i++;
+            }
+            if (!$jugadorExiste){
+                echo "No existe este jugador ";
+            }else{
+                $mostrarResumen = resumenJugador($arregloPartidas , $nombreJugador);
+                $porcentaje = ($mostrarResumen["victorias"] * 100) / $mostrarResumen["partidas"];
+                echo "*********************************************\n";
+                echo "Jugador: " . $mostrarResumen["jugador"] . "\n";
+                echo "Partidas: " . $mostrarResumen["partidas"] . "\n";
+                echo "Puntaje Total: " . $mostrarResumen["puntaje"] . "\n";
+                echo "Victorias: " . $mostrarResumen["victorias"] . "\n";
+                echo "Porcentaje Victorias: " . $porcentaje . " % " . "\n"; 
+                echo "Adivinadas: \n";
+                echo "           Intento 1: " . $mostrarResumen["intento1"] . "\n";
+                echo "           Intento 2: " . $mostrarResumen["intento2"] . "\n";
+                echo "           Intento 3: " . $mostrarResumen["intento3"] . "\n";
+                echo "           Intento 4: " . $mostrarResumen["intento4"] . "\n";
+                echo "           Intento 5: " . $mostrarResumen["intento5"] . "\n";
+                echo "           Intento 6: " . $mostrarResumen["intento6"] . "\n";
+                echo "*********************************************\n";
+            }
     
             break;
         case 6: 
