@@ -335,11 +335,10 @@ function agregarPartida ($partidaNueva, $coleccionPartidas){
 //Inicialización de variables:
  $arregloPartidas = cargarPartidas();
  $arregloPalabras = cargarColeccionPalabras();
- $n = count($arregloPartidas);
  $i = 0;
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+
 //print_r($partida);
 //imprimirResultado($partida);
 
@@ -356,7 +355,9 @@ do {
             $numPalabra = solicitarNumeroEntre(1,count($arregloPalabras));
             $aux = $numPalabra;
             $numPalabra--;
-            while($i<$n){
+            $i = 0;
+
+            while($i<count($arregloPartidas)){
                 if(($nombreJugador==$arregloPartidas[$i]["jugador"])&&($arregloPartidas[$i]["palabraWordix"]==$arregloPalabras[$numPalabra])){
                     echo "La palabra " . $aux . " ya la jugaste " . $nombreJugador . "!!!\n";
                     echo "Ingrese otro numero de palabra para jugar: ";
@@ -375,11 +376,12 @@ do {
         case 2: 
             $nombreJugador = solicitarJugador();
             $numPalabra = array_rand($arregloPalabras);
+            $i = 0;
             if($numPalabra != 0){
                 $numPalabra--;
             }
             
-            while($i<$n){
+            while($i<count($arregloPartidas)){
                 if(($nombreJugador==$arregloPartidas[$i]["jugador"])&&($arregloPartidas[$i]["palabraWordix"]==$arregloPalabras[$numPalabra])){
                     echo "La palabra aleatoria ya la jugaste " . $nombreJugador . "!!!\n";
                     echo "Te damos otra palabra \n ";
@@ -396,14 +398,15 @@ do {
             break;
         case 3: 
             echo "Ingrese el número de partida: ";
-            $numeroUsuario = solicitarNumeroEntre(1, $n);
+            $numeroUsuario = solicitarNumeroEntre(1, count($arregloPartidas));
             mostrarDatosPartida($numeroUsuario);
             break;
         case 4: 
             $nombreJugador = solicitarJugador();
             $jugadorExiste = false;
-            while ($i < $n && !$jugadorExiste) {
-                if ($arregloPartidas[$i]['jugador'] == $nombreJugador) {
+            $i = 0;
+            while ($i < count($arregloPartidas) && !$jugadorExiste) {
+                if ($arregloPartidas[$i]["jugador"] == $nombreJugador) {
                     $jugadorExiste = true;
                 }
                 $i++;
