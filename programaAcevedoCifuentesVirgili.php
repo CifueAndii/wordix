@@ -326,6 +326,27 @@ function agregarPartida ($partidaNueva, $coleccionPartidas){
     return ($coleccionPartidas);
 }
 
+/**
+ * Verifica que un jugador exista
+ * @param string $nombre
+ * @param array $arreglo
+ * @return boolean
+ */
+
+function verificarJugador ($nombre, $arreglo){
+    /* bool $jugadorExiste
+    int $i */
+    $jugadorExiste = false;
+    $i = 0;
+    while ($i < count($arreglo) && !$jugadorExiste) {
+        if ($arreglo[$i]["jugador"] == $nombre) {
+            $jugadorExiste = true;
+        }
+        $i++;
+    }
+    return $jugadorExiste;
+}
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -401,14 +422,7 @@ do {
             break;
         case 4: 
             $nombreJugador = solicitarJugador();
-            $jugadorExiste = false;
-            $i = 0;
-            while ($i < count($arregloPartidas) && !$jugadorExiste) {
-                if ($arregloPartidas[$i]["jugador"] == $nombreJugador) {
-                    $jugadorExiste = true;
-                }
-                $i++;
-            }
+            $jugadorExiste = verificarJugador($nombreJugador, $arregloPartidas);
             if ($jugadorExiste) {
                 $indice = primeraPartidaGanada($arregloPartidas, $nombreJugador);
                 if ($indice != -1) {
@@ -423,15 +437,7 @@ do {
             break;
         case 5: 
             $nombreJugador = solicitarJugador();
-            
-            $jugadorExiste = false;
-            $i = 0;
-            while ($i < count($arregloPartidas) && !$jugadorExiste) {
-                if ($arregloPartidas[$i]["jugador"] == $nombreJugador) {
-                    $jugadorExiste = true;
-                }
-                $i++;
-            }
+            $jugadorExiste = verificarJugador($nombreJugador, $arregloPartidas);
             if (!$jugadorExiste){
                 echo "No existe este jugador.\n";
             }else{
