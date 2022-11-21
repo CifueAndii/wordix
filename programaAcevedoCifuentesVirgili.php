@@ -154,6 +154,7 @@ function agregarPalabra ($nuevaPalabra,$coleccionPalabras){
             $j++;
         }
     }
+    echo "Has agregado una palabra al juego! \n ";
    
     $coleccionPalabras[count($coleccionPalabras)]= $nuevaPalabra;
     return ($coleccionPalabras);
@@ -479,7 +480,7 @@ do {
             break;
         case 6: 
             
-            echo ordenarJugadorPalabra($arregloPartidas);
+            ordenarJugadorPalabra($arregloPartidas);
     
             break;
         case 7: 
